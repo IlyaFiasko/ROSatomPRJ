@@ -38,20 +38,24 @@ st.header("Загрузите аудиофайл для транскрибаци
 audio_file = st.file_uploader("Выберите аудиофайл", type=["mp3", "wav", "m4a"])
 
 if audio_file is not None:
-    st.write("Загружен файл:", audio_file.name)
+    with open("temp_audio.wav", "wb") as f:
+        f.write(audio_file.getbuffer())
 
-    if st.button("Транскрибировать"):
-        st.write("Транскрибируем... Это может занять несколько секунд.")
-        transcript = transcribe_audio(audio_file)
+    # Транскрибация аудиофайла
+    result = model.transcribe("temp_audio.wav")
+    transcribed_text = result["text"]
 
-        st.subheader("Результат транскрибации:")
-        st.text_area("Текст", transcript, height=200)
+    # Показываем результат на странице
+    st.subheader("Результат транскрибации:")
+    st.write(transcribed_text)
 
-        st.subheader("Скачайте текстовый файл:")
-        txt_file = create_txt_file(transcript)
-        st.download_button(
-            label="Скачать .txt файл",
-            data=txt_file,
-            file_name="transcript.txt",
-            mime="text/plain"
-        )
+    # Преобразуем текст в байты
+    byte_data = transcribed_text.encode()
+
+    # Кнопка для скачивания файла
+    st.download_button(
+        label="Скачать результат транскрибации в формате .txt",
+        data=byte_data,
+        file_name="transcription.txt",
+        mime="text/plain"
+    )

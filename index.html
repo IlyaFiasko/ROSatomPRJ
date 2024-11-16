@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Transcription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #333;
+        }
+        .transcription-history {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .transcription-entry {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .transcription-entry h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+        .transcription-entry p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+        .transcription-entry a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload an Audio File for Transcription</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="audio/*" required>
+            <button type="submit">Transcribe</button>
+        </form>
+
+        <div class="transcription-history">
+            <h2>Transcription History:</h2>
+            {% for entry in history %}
+                <div class="transcription-entry">
+                    <h3>{{ entry.filename }}</h3>
+                    <p>{{ entry.transcription }}</p>
+                    <a href="{{ url_for('download_file', filename=entry.txt_file) }}">Download .txt</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

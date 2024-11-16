@@ -10,13 +10,17 @@ os.system("apt-get install -y ffmpeg")
 
 # Функция для транскрибации
 def transcribe_audio(file):
-    # Временный файл
-    with open("temp_audio.wav", "wb") as f:
+    temp_file_path = "temp_audio.wav"
+    with open(temp_file_path, "wb") as f:
         f.write(file.getbuffer())
 
-    # Whisper
-    result = model.transcribe("temp_audio.wav")
-    return result["text"]
+    # Проверка существует ли файл перед трансгрибацией
+    if os.path.exists(temp_file_path):
+        result = model.transcribe(temp_file_path)
+        return result["text"]
+    else:
+        st.error("Ошибка: файл не найден.")
+        return None
 
 
 # Создание текстового файла

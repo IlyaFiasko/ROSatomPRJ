@@ -4,3 +4,4 @@ whisper
 torchaudio
 torch
 torchvision
+imageio[ffmpeg]

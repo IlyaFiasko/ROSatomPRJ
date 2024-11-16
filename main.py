@@ -10,7 +10,7 @@ uploads_dir = os.path.join(base_dir, "uploads")
 transcriptions_dir = os.path.join(base_dir, "transcriptions")
 
 app = Flask(__name__)
-model = whisper.load_model("tiny")  # Выбор модели (например, "base")
+model = whisper.load_model("small")  # Выбор модели (например, "base")
 history = []  # Список для хранения истории транскрипций
 
 @app.route("/", methods=["GET", "POST"])

@@ -3,7 +3,7 @@ import whisper
 import os
 from io import StringIO
 
-model = whisper.load_model("base")
+model = whisper.load_model("small")
 
 os.system("apt-get update")
 os.system("apt-get install -y ffmpeg")

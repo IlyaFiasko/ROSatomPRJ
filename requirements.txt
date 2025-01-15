@@ -1,7 +1,2 @@
-streamlit
-openai-whisper
+flask
 whisper
-torchaudio
-torch
-torchvision
-imageio[ffmpeg]

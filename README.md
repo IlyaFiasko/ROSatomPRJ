@@ -14,7 +14,7 @@
 
 ### 1. Склонируйте репозиторий
 
-git clone https://github.com/4pokodav/local-transcriber.git
+git clone https://github.com/IlyaFiasko/ROSatomPRJ
 
 cd local-transcriber
 

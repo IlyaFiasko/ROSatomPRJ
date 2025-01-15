@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Транскриптор речи</title>
+    <title>Транскрибатор речи</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -77,7 +77,7 @@ audio {
 </head>
 <body>
     <div class="container">
-        <h1>Транскриптор речи</h1>
+        <h1>Транскрибатор речи</h1>
 
         <!-- Форма выбора модели -->
         <form method="POST" enctype="multipart/form-data">
@@ -95,7 +95,7 @@ audio {
         <form method="POST" enctype="multipart/form-data">
             <label for="file">Загрузите файл:</label>
             <input type="file" name="file" id="file" required>
-            <button type="submit">Транскрипция</button>
+            <button type="submit">Транскрибация</button>
         </form>
 
         <!-- Возможность записи и прослушивания аудио -->
@@ -116,12 +116,12 @@ audio {
             </div>
         {% endif %}
 
-        <h2>История транскрипции</h2>
+        <h2>История транскрибции</h2>
         <ul>
             {% for entry in history %}
                 <li>
                     <strong>{{ entry.filename }}</strong> (Модель: {{ entry.model }})<br>
-                    <a href="{{ url_for('download_file', filename=entry.txt_file) }}">Загрузить транскрипцию</a>
+                    <a href="{{ url_for('download_file', filename=entry.txt_file) }}">Загрузить  результат транскрибации</a>
                 </li>
             {% endfor %}
         </ul>
